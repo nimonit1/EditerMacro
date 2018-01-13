@@ -13,12 +13,20 @@
             categoryId="EditerMacro.commands.category"
             id="EditerMacro.commands.commentOut">
       </command>
+      <command
+            id="EditerMacro.commands.KeyOperSave"
+            name="キー入力記憶">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="EditerMacro.commands.commentOut"
-            class="editermacro.handlers.EditorMacroHandler">
+            class="editormacro.handlers.EditorMacroHandler">
+      </handler>
+      <handler
+            class="editormacro.handlers.EditorMacroHandler"
+            commandId="EditerMacro.commands.KeyOperSave">
       </handler>
    </extension>
    <extension
@@ -43,6 +51,10 @@
                   id="EditerMacro.menus.cmd.commentOut"
                   mnemonic="S">
             </command>
+            <command
+                  commandId="EditerMacro.commands.KeyOperSave"
+                  id="EditerMacro.menus.cmd.KeyOperSave">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -54,6 +66,12 @@
                   icon="icons/sample.gif"
                   tooltip="コメントアウト"
                   id="EditerMacro.toolbars.commentOut">
+            </command>
+            <command
+                  commandId="EditerMacro.commands.KeyOperSave"
+                  icon="icons/sample.gif"
+                  id="EditerMacro.toolbars.KeyOperSave"
+                  tooltip="キー入力記憶">
             </command>
          </toolbar>
       </menuContribution>
@@ -68,6 +86,10 @@
                   commandId="EditerMacro.commands.commentOut"
                   id="EditerMacro.menus.cmd.commentOut"
                   mnemonic="S">
+            </command>
+            <command
+                  commandId="EditerMacro.commands.KeyOperSave"
+                  id="EditerMacro.menus.cmd.KeyOperSave">
             </command>
          </menu>
       </menuContribution>

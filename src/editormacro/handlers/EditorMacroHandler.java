@@ -1,4 +1,4 @@
-package editermacro.handlers;
+package editormacro.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -13,6 +13,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.StatusTextEditor;
 
+import editormacro.keymacro.KeyMacroHandler;
+
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * @see org.eclipse.core.commands.IHandler
@@ -22,10 +24,15 @@ public class EditorMacroHandler extends AbstractHandler {
 
 	public static final String EDITTOR_MACRO_CMD_COMMENT_OUT = "EditerMacro.commands.commentOut";
 
+	public static final String EDITTOR_MACRO_CMD_KEY_OP_SAVE = "EditerMacro.commands.KeyOperSave";
+
+	private KeyMacroHandler kmh = null;
+
 	/**
 	 * The constructor.
 	 */
 	public EditorMacroHandler() {
+		kmh = new KeyMacroHandler();
 	}
 
 	/**
@@ -57,7 +64,8 @@ public class EditorMacroHandler extends AbstractHandler {
 					window.getShell(),
 					"EditerMacro",
 					doc.get());*/
-			if(event.getCommand().getId().equals(EDITTOR_MACRO_CMD_COMMENT_OUT)){
+			switch(event.getCommand().getId()){
+			case EDITTOR_MACRO_CMD_COMMENT_OUT:
 				ISelection selection = window.getSelectionService().getSelection();
 				if (selection instanceof ITextSelection) {
 					ITextSelection ts  = (ITextSelection) selection;
@@ -92,6 +100,12 @@ public class EditorMacroHandler extends AbstractHandler {
 						e.printStackTrace();
 					}
 				}
+				break;
+			case EDITTOR_MACRO_CMD_KEY_OP_SAVE:
+				kmh.start(event);
+				break;
+			default:
+				break;
 			}
 		}
 		return null;
